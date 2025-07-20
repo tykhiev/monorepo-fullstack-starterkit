@@ -179,9 +179,6 @@
           "performance": {
             "noReExportAll": "off",
             "noBarrelFile": "off"
-          },
-          "style": {
-            "noNamespaceImport": "off"
           }
         }
       }

@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "es2015",
+    "moduleDetection": "force",
+    "moduleResolution": "bundler",
+    "paths": {
+      "@packages/ui/*": ["./*"],
+      "@packages/ui/components/*": ["./components/*"]
+    },
+    "skipLibCheck": true
+  },
+  "include": ["."],
+  "exclude": ["dist", "build", "node_modules"],
+  "extends": "@packages/ts-config/lib-react.json"
+}

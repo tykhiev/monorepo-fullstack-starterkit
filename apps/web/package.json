@@ -17,6 +17,10 @@
     "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^19",
+    "@packages/ts-config": "workspace:*",
+    "@packages/ui": "workspace:*",
+    "@packages/auth": "workspace:*",
+    "@packages/db": "workspace:*",
     "@types/react-dom": "^19",
     "@tailwindcss/postcss": "^4",
     "tailwindcss": "^4"
