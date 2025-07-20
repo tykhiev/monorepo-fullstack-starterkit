@@ -18,6 +18,7 @@ export const env = createEnv({
     API_PORT: z.string(),
     NODE_ENV: z.enum(["development", "production"]),
     WHITELIST_ORIGIN: z.string(),
+    REDIS_URL: z.string().url(),
   },
 
   /**
