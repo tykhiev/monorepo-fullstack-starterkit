@@ -1,5 +1,5 @@
 {
-  "name": "@packages/database",
+  "name": "@packages/db",
   "description": "",
   "license": "ISC",
   "type": "module",

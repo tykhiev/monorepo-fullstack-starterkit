@@ -85,7 +85,7 @@ importers:
       '@packages/auth':
         specifier: workspace:*
         version: link:../../packages/auth
-      '@packages/database':
+      '@packages/db':
         specifier: workspace:*
         version: link:../../packages/database
       '@packages/ts-config':
@@ -149,7 +149,7 @@ importers:
       '@dotenvx/dotenvx':
         specifier: ^1.38.3
         version: 1.48.1
-      '@packages/database':
+      '@packages/db':
         specifier: workspace:*
         version: link:../database
       better-auth:

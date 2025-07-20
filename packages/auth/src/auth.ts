@@ -1,4 +1,4 @@
-import { prisma } from "@packages/database";
+import { prisma } from "@packages/db";
 import { betterAuth, type BetterAuthOptions } from "better-auth";
 
 import { prismaAdapter } from "better-auth/adapters/prisma";
