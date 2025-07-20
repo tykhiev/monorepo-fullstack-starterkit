@@ -1,12 +1,10 @@
 import { config } from "@dotenvx/dotenvx";
 
 import { createEnv } from "@t3-oss/env-core";
-import path from "node:path";
-import { cwd } from "node:process";
 import { z } from "zod";
 
 config({
-  path: [path.resolve(cwd(), "/.env"), "../../.env"],
+  path: ["../../.env"],
   logLevel: "verbose",
   override: false,
 });

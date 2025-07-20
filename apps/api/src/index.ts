@@ -8,6 +8,7 @@ import { env } from "./env";
 import { middlewares } from "./middlewares/core";
 import { authRoute } from "./modules/auth/auth.route";
 import { openAPISpecsOptions } from "./modules/openapi/openapi.const";
+import { openApiRoute } from "./modules/openapi/openapi.route";
 
 const PORT = env.API_PORT || "4000";
 const app = appFactory.createApp();
@@ -20,6 +21,7 @@ async function bootstrap() {
   app.use("/public/*", serveStatic({ root: "./public" }));
 
   // OpenAPI specs
+  app.route("/docs", openApiRoute);
   app.get("/openapi/specs", (c, next) =>
     openAPISpecs(app, openAPISpecsOptions)(c, next),
   );
