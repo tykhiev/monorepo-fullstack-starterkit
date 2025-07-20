@@ -1,0 +1,27 @@
+{
+  "versionGroups": [
+    {
+      "label": "workspace:*",
+      "dependencies": [
+        "$LOCAL"
+      ],
+      "dependencyTypes": [
+        "dev",
+        "prod"
+      ],
+      "pinVersion": "workspace:*"
+    },
+    {
+      "packages": [
+        "**"
+      ],
+      "dependencies": [
+        "**"
+      ],
+      "dependencyTypes": [
+        "**"
+      ],
+      "preferVersion": "lowestSemver"
+    }
+  ]
+}

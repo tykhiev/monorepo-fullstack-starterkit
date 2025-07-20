@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "composite": true,
+    "incremental": true,
+    "paths": {
+      "@apps/*": ["./apps/*"],
+      "@packages/*": ["./packages/*"]
+    }
+  },
+  "extends": "./packages/ts-config/base.json"
+}

@@ -1,0 +1,15 @@
+{
+  "license": "MIT",
+  "name": "@packages/ts-config",
+  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/node": "20",
+    "typescript": "5.7.3"
+  },
+  "dependencies": {
+    "zod": "3.24.1"
+  }
+}

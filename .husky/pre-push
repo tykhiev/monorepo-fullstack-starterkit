@@ -1,0 +1,13 @@
+GREEN='\033[0;32m';
+LIGHT_BLUE='\033[1;34m';
+NO_COLOR='\033[0m';
+
+if [ -t 1 ]; then tput setaf 1; fi
+echo -e "${LIGHT_BLUE}!${NO_COLOR} Testing Build"
+if [ -t 1 ]; then tput sgr0; fi
+
+pnpm turbo build
+
+if [ -t 1 ]; then tput setaf 1; fi
+echo -e "${GREEN}✓${NO_COLOR} Done Running Build\n"
+if [ -t 1 ]; then tput sgr0; fi

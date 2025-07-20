@@ -1,0 +1,8 @@
+GREEN='\033[0;32m';
+LIGHT_BLUE='\033[1;34m';
+NO_COLOR='\033[0m';
+
+tput setaf 1; echo -e "${LIGHT_BLUE}!${NO_COLOR} Re-installing dependencies"; tput sgr0;
+pnpm install -r
+
+tput setaf 1; echo -e "${GREEN}✓${NO_COLOR} Done Running Install\n"; tput sgr0;

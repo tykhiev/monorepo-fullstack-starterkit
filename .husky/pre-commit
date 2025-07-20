@@ -1,0 +1,23 @@
+GREEN='\033[0;32m';
+LIGHT_BLUE='\033[1;34m';
+NO_COLOR='\033[0m';
+
+if [ "$NODE_ENV" = "production" ]|| [ "$CI" = "true" ]; then
+  exit 0
+fi
+
+if [ -t 1 ]; then tput setaf 1; fi 
+echo -e "${LIGHT_BLUE}!${NO_COLOR} Formatter is Formatting Staged Files"; tput sgr0;
+pnpm biome check --write --unsafe --no-errors-on-unmatched --staged --files-ignore-unknown 'true'
+
+if [ -t 1 ]; then tput setaf 1; fi
+echo -e "${GREEN} Formatted${NO_COLOR}"; tput sgr0;
+
+if [ -t 1 ]; then tput setaf 1; fi
+echo -e "${LIGHT_BLUE}!${NO_COLOR} Checking for Circular Dependencies"; tput sgr0;
+pnpm cruise ./apps ./packages --exclude 'packages(\/|\\)database(\/|\\)*' -p
+if [ -t 1 ]; then tput setaf 1; fi
+echo -e "${GREEN}✓${NO_COLOR} Done Running Check${NO_COLOR}"; tput sgr0;
+
+if [ -t 1 ]; then  tput setaf 1; fi
+echo -e "${GREEN}✓${NO_COLOR} Done Running Pre-commit\n"; tput sgr0;
