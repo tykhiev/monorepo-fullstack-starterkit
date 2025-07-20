@@ -1,0 +1,36 @@
+services:
+  pgdb:
+    hostname: 127.0.0.1
+    image: postgres:16-alpine
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: my-project
+      POSTGRES_PASSWORD: my-project
+      POSTGRES_DB: my-project
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/postgres_data:/var/lib/postgresql/data:Z
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U my-project"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis/redis-stack:7.2.0-v14
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data/redis_data:/data:Z
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pgdb_data:
+  redis_data:
