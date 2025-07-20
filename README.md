@@ -206,25 +206,4 @@ pnpm build
 pnpm start
 ```
 
-## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests and linting
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
-## 🆘 Support
-
-For support and questions:
-- Open an issue on GitHub
-- Check the documentation in each package
-- Review the example implementations
-
----
-
-Built with ❤️ using modern web technologies
