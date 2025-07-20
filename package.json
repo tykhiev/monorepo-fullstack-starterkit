@@ -7,7 +7,7 @@
     "web": "pnpm --filter '@apps/web'",
     "ui": "pnpm --filter '@packages/ui'",
     "auth": "pnpm --filter '@packages/auth'",
-    "db": "pnpm --filter '@packages/db'",
+    "db": "pnpm --filter '@packages/database'",
     "check-types": "tsc --noEmit",
     "nuke": "rimraf **/node_modules",
     "cruise": "pnpm depcruise",

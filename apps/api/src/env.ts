@@ -3,6 +3,7 @@ import { config } from "@dotenvx/dotenvx";
 import { createEnv } from "@t3-oss/env-core";
 import path from "node:path";
 import { cwd } from "node:process";
+import { z } from "zod";
 
 config({
   path: [path.resolve(cwd(), "/.env"), "../../.env"],
@@ -13,7 +14,10 @@ config({
 export const env = createEnv({
   server: {
     // your env validation goes here example:
-    //     API_URL: z.string().url(),
+    API_URL: z.string().url(),
+    API_PORT: z.string(),
+    NODE_ENV: z.enum(["development", "production"]),
+    WHITELIST_ORIGIN: z.string(),
   },
 
   /**

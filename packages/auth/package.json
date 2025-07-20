@@ -1,0 +1,36 @@
+{
+  "name": "@packages/auth",
+  "private": true,
+  "type": "module",
+  "license": "ISC",
+  "description": "Auth service for the monorepo",
+  "main": "./dist/auth.js",
+  "types": "./dist/auth.d.ts",
+  "scripts": {
+    "generate": "npx @better-auth/cli generate --output ../database/prisma/schema.prisma",
+    "build": "tsup",
+    "prepare": "pnpm build"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/auth.d.ts",
+      "import": "./dist/auth.js"
+    },
+    "./client": {
+      "types": "./dist/client.d.ts",
+      "import": "./dist/client.js"
+    }
+  },
+  "dependencies": {
+    "@dotenvx/dotenvx": "^1.38.3",
+    "@packages/database": "workspace:*",
+    "better-auth": "^1.2.5",
+    "resend": "^4.1.2",
+    "zod": "3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "20",
+    "tsup": "^8.4.0",
+    "typescript": "5.7.3"
+  }
+}
