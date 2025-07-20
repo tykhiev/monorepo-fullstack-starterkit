@@ -143,7 +143,7 @@ export default {
         "section of your package.json. If this module is development only - add it to the " +
         "from.pathNot re of the not-to-dev-dep rule in the dependency-cruiser configuration",
       from: {
-        path: "^[(./apps)|(./packages)]",
+        path: "^[(./apps)|(./pkgs)]",
         pathNot: [
           "[.](?:spec|test)[.](?:js|mjs|cjs|jsx|ts|mts|cts|tsx)$",
           "tsup[.]config[.]ts$",
@@ -195,7 +195,7 @@ export default {
     exclude: {
       /* path: an array of regular expressions in strings to match against */
       // path: [
-      //   "^\\./(?:apps|packages)/.*?(?:\\.next|dist|build|node_modules|\\.cache|coverage|out|\\.output|tmp|temp)/",
+      //   "^\\./(?:apps|pkgs)/.*?(?:\\.next|dist|build|node_modules|\\.cache|coverage|out|\\.output|tmp|temp)/",
       // ],
     },
 
