@@ -112,11 +112,8 @@ monorepo-fullstack-starterkit/
 #### `packages/auth` - Authentication Service
 - **Framework**: Better Auth
 - **Features**:
-  - Multiple authentication providers
-  - Email verification
   - Session management
   - User management
-  - Organization support
 
 #### `packages/database` - Database Layer
 - **ORM**: Prisma
