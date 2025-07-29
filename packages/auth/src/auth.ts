@@ -2,12 +2,11 @@ import { prisma } from "@packages/db";
 import { betterAuth, type BetterAuthOptions } from "better-auth";
 
 import { prismaAdapter } from "better-auth/adapters/prisma";
-import { admin, emailOTP, openAPI, organization } from "better-auth/plugins";
+import { admin, openAPI } from "better-auth/plugins";
 
 import { config } from "@dotenvx/dotenvx";
 import { nextCookies } from "better-auth/next-js";
-import { emailAndPassword, emailVerification, user } from "./options";
-import { emailOTPOption } from "./options/emailOtp";
+import { user } from "./options";
 
 // load db env for auth cli
 if (!process.env.DATABASE_URL) {
@@ -20,7 +19,8 @@ const advanced = {
   cookiePrefix: "grouper-auth",
   crossSubDomainCookies: {
     enabled: prod,
-    domain: prod ? ".grouperai.com" : "localhost", // Domain with a leading period
+    // TODO: change to your domain
+    domain: prod ? "your-domain.com" : "localhost", // Domain with a leading period
   },
   defaultCookieAttributes: {
     secure: true,
@@ -34,17 +34,11 @@ const betterAuthOptions: BetterAuthOptions = {
   database: prismaAdapter(prisma, {
     provider: "postgresql",
   }),
-  emailAndPassword,
-  emailVerification,
   plugins: [
     openAPI({
       path: "/docs",
       disableDefaultReferences: true,
     }),
-    organization({
-      allowUserToCreateOrganization: true,
-    }),
-    emailOTP(emailOTPOption),
     admin(),
     nextCookies(),
   ],
@@ -57,7 +51,6 @@ const betterAuthOptions: BetterAuthOptions = {
   },
   advanced,
   baseURL: process.env.API_URL,
-  // trustedOrigins: [...(process.env.WHITELIST_ORIGIN?.split(",") || [])],
   trustedOrigins: [
     process.env.WEB_URL || "http://localhost:3000",
     process.env.API_URL || "http://localhost:4000",
