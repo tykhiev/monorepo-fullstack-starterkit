@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": false,
+    "strictPropertyInitialization": false,
+    "declaration": false,
+    "declarationMap": false,
+    "incremental": true,
+    "removeComments": true,
+    "types": ["node"]
+  },
+  "extends": "./base.json"
+}

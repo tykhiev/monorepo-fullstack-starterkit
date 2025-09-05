@@ -1,248 +1,98 @@
-# 🚀 API Server
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+</p>
 
-A high-performance API server built with Hono.js, featuring authentication, OpenAPI documentation, and modern TypeScript practices.
+[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
+[circleci-url]: https://circleci.com/gh/nestjs/nest
 
-## ✨ Features
+  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+    <p align="center">
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
+<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
+<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
+<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
+<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
+  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
+    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
+  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
+</p>
+  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
+  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-- **⚡ Fast & Lightweight**: Built with Hono.js for optimal performance
-- **📚 OpenAPI Documentation**: Auto-generated API docs with Scalar
-- **🔐 Authentication**: Integrated with Better Auth for secure user management
-- **🗄️ Database Integration**: Type-safe database operations with Prisma
-- **📝 Logging**: Structured logging with Pino
-- **🔄 CORS Support**: Cross-origin resource sharing enabled
-- **🎯 Type Safety**: Full TypeScript coverage with strict type checking
-- **🌍 Environment Validation**: Runtime environment validation with t3-env
-- **💾 Redis Integration**: Session storage and caching support
+## Description
 
-## 🏗️ Architecture
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-```
-src/
-├── common/
-│   ├── const/           # Constants and configuration
-│   ├── exception/       # Custom exception handlers
-│   ├── libs/           # External library configurations
-│   ├── pipes/          # Validation pipes
-│   ├── server/         # Server factory and utilities
-│   └── types/          # Shared type definitions
-├── middlewares/        # Request/response middleware
-├── modules/           # Feature modules
-│   ├── auth/          # Authentication routes
-│   └── openapi/       # OpenAPI documentation
-├── env.ts             # Environment configuration
-└── index.ts           # Application entry point
-```
-
-## 🚀 Quick Start
-
-### Prerequisites
-
-- Node.js 20+
-- PostgreSQL database
-- Redis server
-- Environment variables configured
-
-### Development
+## Project setup
 
 ```bash
-# Install dependencies
-pnpm install
-
-# Start development server
-pnpm dev
-
-# Build for production
-pnpm build
-
-# Start production server
-pnpm start
+$ pnpm install
 ```
 
-### Environment Variables
-
-Create a `.env` file in the `apps/api` directory:
-
-```env
-# Database
-DATABASE_URL="postgresql://username:password@localhost:5432/database"
-
-# Redis
-REDIS_URL="redis://localhost:6379"
-
-# Auth
-AUTH_SECRET="your-secret-key"
-AUTH_URL="http://localhost:4000"
-
-# API Configuration
-API_PORT="4000"
-NODE_ENV="development"
-
-# Email (for auth)
-RESEND_API_KEY="your-resend-key"
-```
-
-## 📚 API Documentation
-
-Once the server is running, you can access:
-
-- **OpenAPI Specs**: `http://localhost:4000/openapi/specs`
-- **Interactive Docs**: `http://localhost:4000/docs`
-
-## 🔧 Available Endpoints
-
-### Authentication Routes (`/api/auth`)
-
-- `POST /api/auth/signup` - User registration
-- `POST /api/auth/signin` - User login
-- `POST /api/auth/signout` - User logout
-- `GET /api/auth/session` - Get current session
-- `POST /api/auth/verify` - Verify email address
-
-### Static Files
-
-- `GET /public/*` - Serve static files
-
-## 🛠️ Development
-
-### Adding New Routes
-
-1. Create a new module in `src/modules/`
-2. Define your routes with proper OpenAPI documentation
-3. Register the routes in `src/index.ts`
-
-Example:
-
-```typescript
-// src/modules/users/users.route.ts
-import { OpenAPIHono } from '@hono/zod-openapi'
-import { z } from 'zod'
-
-const app = new OpenAPIHono()
-
-const UserSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  email: z.string().email(),
-})
-
-app.openapi(
-  {
-    method: 'get',
-    path: '/users',
-    responses: {
-      200: {
-        content: {
-          'application/json': {
-            schema: z.array(UserSchema),
-          },
-        },
-        description: 'List of users',
-      },
-    },
-  },
-  async (c) => {
-    // Your route logic here
-    return c.json([])
-  }
-)
-
-export { app as usersRoute }
-```
-
-### Middleware
-
-The API uses several middleware layers:
-
-- **CORS**: Cross-origin resource sharing
-- **Logging**: Request/response logging with Pino
-- **Session**: Session management and validation
-- **Validation**: Request validation with Zod
-
-### Error Handling
-
-Custom exception handling is implemented in `src/common/exception/`:
-
-- `ValidationException` - For validation errors
-- `NotFoundException` - For resource not found
-- `UnauthorizedException` - For authentication errors
-
-## 🧪 Testing
+## Compile and run the project
 
 ```bash
-# Run tests
-pnpm test
+# development
+$ pnpm run start
 
-# Run tests in watch mode
-pnpm test:watch
+# watch mode
+$ pnpm run start:dev
 
-# Run tests with coverage
-pnpm test:coverage
+# production mode
+$ pnpm run start:prod
 ```
 
-## 🚀 Deployment
-
-### Production Build
+## Run tests
 
 ```bash
-# Build the application
-pnpm build
+# unit tests
+$ pnpm run test
 
-# Start production server
-pnpm start
+# e2e tests
+$ pnpm run test:e2e
+
+# test coverage
+$ pnpm run test:cov
 ```
 
-### Docker Deployment
+## Deployment
 
-```dockerfile
-FROM oven/bun:1 as base
-WORKDIR /app
+When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
 
-# Install dependencies
-COPY package.json pnpm-lock.yaml ./
-RUN bun install --frozen-lockfile
+If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
 
-# Copy source code
-COPY . .
-
-# Build the application
-RUN bun run build
-
-# Production stage
-FROM oven/bun:1-slim
-WORKDIR /app
-
-COPY --from=base /app/dist ./dist
-COPY --from=base /app/package.json ./
-
-EXPOSE 4000
-CMD ["bun", "run", "start"]
+```bash
+$ pnpm install -g @nestjs/mau
+$ mau deploy
 ```
 
-## 📊 Monitoring
+With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
 
-The API includes built-in monitoring capabilities:
+## Resources
 
-- **Health Check**: `GET /health`
-- **Metrics**: Request/response metrics
-- **Logging**: Structured JSON logging
-- **Error Tracking**: Comprehensive error handling
+Check out a few resources that may come in handy when working with NestJS:
 
-## 🔒 Security
+- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
+- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
+- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
+- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
+- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
+- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
+- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
+- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
 
-- **CORS**: Configured for secure cross-origin requests
-- **Rate Limiting**: Built-in rate limiting (configurable)
-- **Input Validation**: All inputs validated with Zod
-- **Authentication**: Secure session management
-- **Environment Variables**: Runtime validation
+## Support
 
-## 🤝 Contributing
+Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-1. Follow the existing code structure
-2. Add proper TypeScript types
-3. Include OpenAPI documentation for new endpoints
-4. Add tests for new functionality
-5. Update this README if needed
+## Stay in touch
 
-## 📄 License
+- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
+- Website - [https://nestjs.com](https://nestjs.com/)
+- Twitter - [@nestframework](https://twitter.com/nestframework)
 
-This project is licensed under the MIT License. 
+## License
+
+Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).

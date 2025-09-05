@@ -1,10 +1,11 @@
 {
-  "name": "monorepo-fullstack-starterkit",
+  "name": "gongcha-app",
   "packageManager": "pnpm@9.14.0",
   "private": true,
   "scripts": {
     "api": "pnpm --filter '@apps/api'",
     "web": "pnpm --filter '@apps/web'",
+    "mobile": "pnpm --filter '@apps/mobile'",
     "ui": "pnpm --filter '@packages/ui'",
     "auth": "pnpm --filter '@packages/auth'",
     "db": "pnpm --filter '@packages/db'",
@@ -20,17 +21,17 @@
   },
   "engineStrict": true,
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "dependency-cruiser": "^16.10.4",
-    "lint-staged": "^15.4.3",
+    "lint-staged": "^15.5.2",
     "rimraf": "^6.0.1",
-    "syncpack": "13",
-    "turbo": "^2.5.5",
+    "syncpack": "^13.0.4",
+    "turbo": "^2.5.6",
     "typescript": "5.8.3"
   },
   "dependencies": {

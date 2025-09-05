@@ -14,6 +14,7 @@
       ".next",
       ".vercel",
       ".turbo",
+      ".expo",
       "generated",
       "build",
       "dist",
@@ -40,6 +41,7 @@
       ".next",
       ".vercel",
       ".turbo",
+      ".expo",
       "generated",
       "build",
       "dist",
@@ -70,6 +72,7 @@
       ".next",
       ".vercel",
       ".turbo",
+      ".expo",
       "generated",
       "build",
       "dist",
@@ -139,6 +142,7 @@
       ".next",
       ".vercel",
       ".turbo",
+      ".expo",
       "generated",
       "build",
       "dist",
@@ -163,22 +167,73 @@
       ]
     },
     {
-      "include": ["./apps/api/src/**/*.ts"],
-      "javascript": { "parser": { "unsafeParameterDecoratorsEnabled": true } },
+      "include": ["./apps/api/src/**/*.ts", "./apps/api/test/**/*.ts"],
+      "javascript": {
+        "parser": { "unsafeParameterDecoratorsEnabled": true },
+        "globals": [
+          "describe",
+          "it",
+          "expect",
+          "beforeEach",
+          "afterEach",
+          "beforeAll",
+          "afterAll",
+          "jest"
+        ]
+      },
       "linter": {
         "enabled": true,
-        "rules": { "style": { "noParameterProperties": "off" } }
+        "rules": {
+          "style": { "noParameterProperties": "off" },
+          "correctness": { "noUndeclaredVariables": "off" }
+        }
       }
     },
     {
       "include": ["./packages/database/**/*.ts"],
-
       "linter": {
         "enabled": true,
         "rules": {
           "performance": {
             "noReExportAll": "off",
             "noBarrelFile": "off"
+          }
+        }
+      }
+    },
+    {
+      "include": ["./apps/mobile/**/*.{js,jsx,ts,tsx}"],
+      "ignore": ["./apps/mobile/.expo/**/*"],
+      "linter": {
+        "enabled": true,
+        "rules": {
+          "nursery": {
+            "noCommonJs": "off"
+          },
+          "style": {
+            "noNamespaceImport": "off",
+            "useFilenamingConvention": "off"
+          },
+          "performance": {
+            "noBarrelFile": "off",
+            "noReExportAll": "off"
+          },
+          "correctness": {
+            "noUnusedVariables": "off"
+          }
+        }
+      }
+    },
+    {
+      "include": [
+        "./apps/mobile/scripts/**/*.js",
+        "./apps/mobile/eslint.config.js"
+      ],
+      "linter": {
+        "enabled": true,
+        "rules": {
+          "nursery": {
+            "noCommonJs": "off"
           }
         }
       }

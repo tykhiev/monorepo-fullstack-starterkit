@@ -1,18 +1,14 @@
 {
+  "extends": "@packages/ts-config/nestjs.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "outDir": "./dist",
+    "rootDir": "./src",
     "paths": {
       "@/*": ["./src/*"],
-      "@packages/db/*": ["@packages/db/src/index"]
-    },
-    "outDir": "./dist",
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "strict": true,
-    "noImplicitAny": true
+      "@packages/*": ["../../packages/*/src"]
+    }
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"],
-  "extends": "@packages/ts-config/hono.json"
+  "exclude": ["node_modules", "dist", "test"]
 }

@@ -145,8 +145,29 @@ export default {
       from: {
         path: "^[(./apps)|(./packages)]",
         pathNot: [
+          // Test files
           "[.](?:spec|test)[.](?:js|mjs|cjs|jsx|ts|mts|cts|tsx)$",
+          "/test/",
+          // Config files
           "tsup[.]config[.]ts$",
+          "eslint[.]config[.](?:js|mjs|cjs|ts)$",
+          "jest[.]config[.](?:js|mjs|cjs|ts)$",
+          "babel[.]config[.](?:js|mjs|cjs|ts)$",
+          "webpack[.]config[.](?:js|mjs|cjs|ts)$",
+          "vite[.]config[.](?:js|mjs|cjs|ts)$",
+          "next[.]config[.](?:js|mjs|cjs|ts)$",
+          "tailwind[.]config[.](?:js|mjs|cjs|ts)$",
+          "postcss[.]config[.](?:js|mjs|cjs|ts)$",
+          // Mobile specific files
+          "/scripts/",
+          "expo[.]config[.](?:js|mjs|cjs|ts)$",
+          "metro[.]config[.](?:js|mjs|cjs|ts)$",
+          // Build and config directories
+          "/test/",
+          "/tests/",
+          "/scripts/",
+          "/config/",
+          "/tools/",
         ],
       },
       to: {
